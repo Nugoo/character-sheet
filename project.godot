@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Character-sheet"
+run/main_scene="res://character_sheet.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [rendering]
 
