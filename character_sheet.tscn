@@ -1,34 +1,61 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsty3aubtj0mp"]
 
 [ext_resource type="Script" path="res://character_sheet.gd" id="1_4d8gd"]
-[ext_resource type="Script" path="res://Character.gd" id="1_heg4g"]
-[ext_resource type="Script" path="res://AbilitiesContainer.gd" id="5_b2swr"]
+[ext_resource type="Script" path="res://File.gd" id="2_44cnw"]
+[ext_resource type="Script" path="res://abilities_container.gd" id="5_b2swr"]
 
 [sub_resource type="Theme" id="Theme_xhuxv"]
 LineEdit/constants/minimum_character_width = 2
 
 [node name="CharacterSheet" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_4d8gd")
 
-[node name="Character" type="Node" parent="."]
-script = ExtResource("1_heg4g")
-Str = 14
-Dex = 10
-Cha = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="AbilitiesContainer" type="GridContainer" parent="PanelContainer"]
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
+layout_mode = 2
+flat = true
+
+[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+item_count = 3
+item_0/text = "Open..."
+item_0/id = 0
+item_1/text = "Save"
+item_1/id = 1
+item_2/text = "Save As..."
+item_2/id = 2
+script = ExtResource("2_44cnw")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AbilitiesContainer" type="GridContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme = SubResource("Theme_xhuxv")
 columns = 3
 script = ExtResource("5_b2swr")
+
+[node name="OpenFileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(392, 159)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.char ; Character files")
+use_native_dialog = true
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+title = "Save character"
+ok_button_text = "Save"
+access = 2
+filters = PackedStringArray("*.char ; Character files")
+use_native_dialog = true
+
+[connection signal="index_pressed" from="VBoxContainer/MenuBar/File" to="VBoxContainer/MenuBar/File" method="_on_index_pressed"]
+[connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_file_selected"]
+[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
