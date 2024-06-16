@@ -9,7 +9,7 @@ func _ready() -> void:
 		add_ability(ability)
 
 func get_character_data() -> CharacterData:
-	return $"/root/CharacterSheet".data
+	return $/root/CharacterSheet.data
 
 func refresh() -> void:
 	for ability in get_character_data().get_abilities():

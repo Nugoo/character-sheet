@@ -27,10 +27,15 @@ func _load(path : String, original_path : String, use_sub_threads : bool, cache_
 		var section_buf : PackedByteArray = file.get_buffer(section_size)
 		
 		match section_name:
+			"name":
+				load_name(section_buf, character_data)
 			"abilities":
 				load_abilities(section_buf, character_data)
 	
 	return character_data
+
+func load_name(buf : PackedByteArray, character_data : CharacterData) -> void:
+	character_data.Name = buf.get_string_from_utf8()
 
 func load_abilities(buf : PackedByteArray, character_data : CharacterData) -> void:
 	var ability_index : int = 0

@@ -12,18 +12,24 @@ func file_open() -> void:
 	$OpenFileDialog.popup()
 
 func file_save_as() -> void:
+	if data.path != "":
+		$SaveFileDialog.current_path = data.path
+	else:
+		$SaveFileDialog.current_path = data.Name.to_lower() + ".char"
+	
 	$SaveFileDialog.popup()
 
 func open(path : String) -> void:
 	print("Opening "+path)
 	data = load(path)
-	print(str(data.Str))
+	data.path = path
 	refresh()
 
 func save(path : String) -> void:
 	if path.get_extension() != "char":
 		path += ".char"
 	
+	data.path = path
 	print("Saving to "+path)
 	var err = ResourceSaver.save(data, path)
 	if err != OK:
@@ -33,4 +39,5 @@ func _draw() -> void:
 	print("Drawing root")
 
 func refresh() -> void:
+	get_window().title = data.Name
 	get_tree().call_group("character_view", "refresh")

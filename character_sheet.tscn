@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsty3aubtj0mp"]
+[gd_scene load_steps=6 format=3 uid="uid://bsty3aubtj0mp"]
 
 [ext_resource type="Script" path="res://character_sheet.gd" id="1_4d8gd"]
 [ext_resource type="Script" path="res://File.gd" id="2_44cnw"]
+[ext_resource type="Script" path="res://name_panel_container.gd" id="3_prm6w"]
 [ext_resource type="Script" path="res://abilities_container.gd" id="5_b2swr"]
 
 [sub_resource type="Theme" id="Theme_xhuxv"]
@@ -31,6 +32,21 @@ item_2/text = "Save As..."
 item_2/id = 2
 script = ExtResource("2_44cnw")
 
+[node name="NamePanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_prm6w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NamePanelContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/NamePanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameTextEdit" type="LineEdit" parent="VBoxContainer/NamePanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -57,5 +73,6 @@ filters = PackedStringArray("*.char ; Character files")
 use_native_dialog = true
 
 [connection signal="index_pressed" from="VBoxContainer/MenuBar/File" to="VBoxContainer/MenuBar/File" method="_on_index_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/NamePanelContainer/HBoxContainer/NameTextEdit" to="VBoxContainer/NamePanelContainer" method="_on_name_text_edit_text_submitted"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_file_selected"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
