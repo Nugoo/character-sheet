@@ -13,18 +13,23 @@ func _save(resource : Resource, path : String, flags : int):
 	
 	var character_data : CharacterData = resource as CharacterData
 	
+	var name_buf : PackedByteArray = character_data.Name.to_utf8_buffer()
+	var name_size : int = name_buf.size()
 	var ability_buf : PackedByteArray = save_abilities(character_data)
-	var ability_size : int = len(ability_buf)
+	var ability_size : int = ability_buf.size()
 	
 	# Save file is prefixed with a csv line, of the format:
 	# "<section-1-name>,<section-1-size>,<section-2-name>,<section-2-size>,..."
 	var toc : PackedStringArray = PackedStringArray()
+	toc.push_back("name")
+	toc.push_back(str(name_size))
 	toc.push_back("abilities")
 	toc.push_back(str(ability_size))
 	
 	# Save to file
 	var file : FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	file.store_csv_line(toc)
+	file.store_buffer(name_buf)
 	file.store_buffer(ability_buf)
 
 func save_abilities(character_data : CharacterData) -> PackedByteArray:
