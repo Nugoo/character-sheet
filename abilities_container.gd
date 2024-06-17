@@ -1,6 +1,6 @@
 extends GridContainer
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	add_to_group("character_view")
 	add_labels()
@@ -8,21 +8,24 @@ func _ready() -> void:
 	for ability in get_character_data().get_abilities():
 		add_ability(ability)
 
+
 func get_character_data() -> CharacterData:
 	return $/root/CharacterSheet.data
+
 
 func refresh() -> void:
 	for ability in get_character_data().get_abilities():
 		refresh_ability(ability)
+
 
 func refresh_ability(ability : Ability) -> void:
 	var valueSpinBox = get_node("valueSpinBox" + ability.name)
 	valueSpinBox.set_value_no_signal(ability.value)
 	
 	var modLabel = get_node("modLabel" + ability.name)
-	modLabel.text = ability.name
-	var modValue = floor(ability.value / 2) - 5
-	modLabel.text = "%+d" % modValue
+	#modLabel.text = ability.name
+	modLabel.text = "%+d" % ability.get_modifier()
+
 
 func add_labels() -> void:
 	var abilityLabel = Label.new()
@@ -40,6 +43,7 @@ func add_labels() -> void:
 	modLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	add_child(modLabel)
 	
+
 func add_ability(ability : Ability) -> void:
 	var nameLabel = Label.new()
 	nameLabel.text = ability.name
