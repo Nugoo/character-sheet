@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsty3aubtj0mp"]
+[gd_scene load_steps=7 format=3 uid="uid://bsty3aubtj0mp"]
 
 [ext_resource type="Script" path="res://character_sheet.gd" id="1_4d8gd"]
 [ext_resource type="Script" path="res://File.gd" id="2_44cnw"]
 [ext_resource type="Script" path="res://name_panel_container.gd" id="3_prm6w"]
-[ext_resource type="Script" path="res://proficiency_container.gd" id="4_nrstq"]
 [ext_resource type="Script" path="res://saves_container.gd" id="5_31pld"]
 [ext_resource type="Script" path="res://abilities_container.gd" id="5_b2swr"]
 
@@ -52,17 +51,6 @@ size_flags_horizontal = 3
 [node name="PanelContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="ProficiencyContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
-layout_mode = 2
-script = ExtResource("4_nrstq")
-
-[node name="ProficiencyLabel" type="Label" parent="VBoxContainer/PanelContainer/ProficiencyContainer"]
-layout_mode = 2
-text = "Proficiency"
-
-[node name="ProficiencySpinBox" type="SpinBox" parent="VBoxContainer/PanelContainer/ProficiencyContainer"]
-layout_mode = 2
-
 [node name="AbilitiesContainer" type="GridContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme = SubResource("Theme_xhuxv")
@@ -71,7 +59,6 @@ script = ExtResource("5_b2swr")
 
 [node name="SavesContainer" type="GridContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
-columns = 3
 script = ExtResource("5_31pld")
 
 [node name="OpenFileDialog" type="FileDialog" parent="."]
@@ -92,6 +79,5 @@ use_native_dialog = true
 
 [connection signal="index_pressed" from="VBoxContainer/MenuBar/File" to="VBoxContainer/MenuBar/File" method="_on_index_pressed"]
 [connection signal="text_submitted" from="VBoxContainer/NamePanelContainer/HBoxContainer/NameTextEdit" to="VBoxContainer/NamePanelContainer" method="_on_name_text_edit_text_submitted"]
-[connection signal="value_changed" from="VBoxContainer/PanelContainer/ProficiencyContainer/ProficiencySpinBox" to="VBoxContainer/PanelContainer/ProficiencyContainer" method="_on_proficiency_spin_box_value_changed"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_file_selected"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
