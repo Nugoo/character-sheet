@@ -6,11 +6,11 @@ func _get_recognized_extensions() -> PackedStringArray:
 	return PackedStringArray(["char"])
 
 
-func _get_resource_script_class(path : String) -> String:
+func _get_resource_script_class(_path : String) -> String:
 	return "CharacterData"
 
 
-func _get_resource_type(path : String) -> String:
+func _get_resource_type(_path : String) -> String:
 	return "Resource"
 
 
@@ -18,7 +18,7 @@ func _handles_type(type: StringName) -> bool:
 	return ClassDB.is_parent_class(type, "Resource")
 
 
-func _load(path : String, original_path : String, use_sub_threads : bool, cache_mode : int) -> Variant:
+func _load(path : String, _original_path : String, _use_sub_threads : bool, _cache_mode : int) -> Variant:
 	var file : FileAccess = FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		return FileAccess.get_open_error()

@@ -2,7 +2,7 @@ class_name CharacterDataSaver
 extends ResourceFormatSaver
 
 
-func _get_recognized_extensions(resource : Resource) -> PackedStringArray:
+func _get_recognized_extensions(_resource : Resource) -> PackedStringArray:
 	return PackedStringArray(["char"])
 
 
@@ -10,7 +10,7 @@ func _recognize(resource : Resource) -> bool:
 	return resource is CharacterData
 
 
-func _save(resource : Resource, path : String, flags : int):
+func _save(resource : Resource, path : String, _flags : int):
 	if not(resource is CharacterData):
 		return ERR_INVALID_DATA
 	

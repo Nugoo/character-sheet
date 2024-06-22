@@ -1,0 +1,15 @@
+name: "godot gut tests"
+on:
+  - push
+
+jobs:
+  execute-gut:
+    name: Run GUT tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker test
+        uses: ./.github/actions/godot-gut-ci
+        with:
+          gut_params: -gdir=res://tests
