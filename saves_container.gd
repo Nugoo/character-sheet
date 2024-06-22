@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func get_character_data() -> CharacterData:
-	return $/root/CharacterSheet.data
+	return owner.data
 
 
 func refresh() -> void:
@@ -52,7 +52,7 @@ func add_save(save : Proficiency, character_data : CharacterData) -> void:
 	
 	var on_checkbutton_toggled = func _on_checkbutton_toggled(toggled_on : bool) -> void:
 		get_character_data().get(save.ability.name.to_lower() + "_save").proficient = toggled_on
-		$/root/CharacterSheet.refresh()
+		owner.refresh()
 	
 	var proficient_checkbutton : CheckButton = CheckButton.new()
 	proficient_checkbutton.name = "proficient_checkbutton" + save.ability.name

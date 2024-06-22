@@ -1,3 +1,4 @@
+class_name CharacterSheet
 extends Control
 
 @export var data : CharacterData = CharacterData.new()
