@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func get_character_data() -> CharacterData:
-	return $/root/CharacterSheet.data
+	return owner.data
 
 
 func refresh() -> void:
@@ -51,7 +51,7 @@ func add_ability(ability : Ability) -> void:
 	
 	var on_spinbox_value_changed = func _on_spinbox_value_changed(value : float):
 		get_character_data().get(ability.name).value = value
-		$/root/CharacterSheet.refresh()
+		owner.refresh()
 	
 	var valueSpinBox = SpinBox.new()
 	valueSpinBox.name = "valueSpinBox" + ability.name

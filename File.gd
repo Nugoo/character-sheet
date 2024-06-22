@@ -6,9 +6,9 @@ func _on_index_pressed(index : int) -> void:
 	
 	match itemText:
 		"Open...":
-			$/root/CharacterSheet.file_open()
+			owner.file_open()
 		"Save":
-			#$/root/CharacterSheet.fileSave()
+			#owner.fileSave()
 			pass
 		"Save As...":
-			$/root/CharacterSheet.file_save_as()
+			owner.file_save_as()

@@ -7,7 +7,7 @@ func _ready():
 
 
 func get_character_data() -> CharacterData:
-	return $"/root/CharacterSheet".data
+	return owner.data
 
 
 func refresh() -> void:
@@ -16,4 +16,4 @@ func refresh() -> void:
 
 func _on_proficiency_spin_box_value_changed(value : float) -> void:
 	get_character_data().proficiency = int(value)
-	$/root/CharacterSheet.refresh()
+	owner.refresh()

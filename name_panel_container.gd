@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 func get_character_data() -> CharacterData:
-	return $"/root/CharacterSheet".data
+	return owner.data
 
 
 func refresh() -> void:
@@ -16,4 +16,4 @@ func refresh() -> void:
 
 func _on_name_text_edit_text_submitted(new_text):
 	get_character_data().name = new_text
-	$/root/CharacterSheet.refresh()
+	owner.refresh()
