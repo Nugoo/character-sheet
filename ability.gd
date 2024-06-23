@@ -11,4 +11,4 @@ func _init(_name : String, _value : int):
 
 
 func get_modifier() -> int:
-	return floor(value / 2) - 5
+	return floor(value / 2.0) - 5

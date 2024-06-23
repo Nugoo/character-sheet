@@ -1,7 +1,7 @@
 extends GutTest
 
 const character_sheet_path : String = "res://character_sheet.tscn"
-const temp_save_path : String = "res://tests/fixtures/temp.char"
+const temp_save_path : String = "user://temp.char"
 
 func after_each() -> void:
 	gut.file_delete(temp_save_path)
