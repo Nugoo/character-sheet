@@ -38,7 +38,7 @@ func save(path : String) -> void:
 	
 	data.path = path
 	print("Saving to ", path)
-	var err = ResourceSaver.save(data, path)
+	var err : Error = ResourceSaver.save(data, path)
 	if err != OK:
 		printerr("Failed to save: ", error_string(err))
 

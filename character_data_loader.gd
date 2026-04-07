@@ -26,6 +26,7 @@ func _load(path : String, _original_path : String, _use_sub_threads : bool, _cac
 	var character_data : CharacterData = CharacterData.new()
 	
 	var toc : PackedStringArray = file.get_csv_line()
+	@warning_ignore("integer_division")
 	for i : int in toc.size() / 2:
 		var section_name : String = toc[i*2]
 		var section_size : int = int(toc[i*2 + 1])

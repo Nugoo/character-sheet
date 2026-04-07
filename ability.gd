@@ -5,7 +5,7 @@ var name : String
 var value : int
 
 
-func _init(_name : String, _value : int):
+func _init(_name : String, _value : int) -> void:
 	name = _name
 	value = _value
 
